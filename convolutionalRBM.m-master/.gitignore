@@ -1,0 +1,12 @@
+#nvmexopt*.bat
+*.ignore
+*.mex*
+*.asv
+*.mat
+101_ObjectCategories/*
+Caltech101MAT/*
+image_preprocess.m
+*.log
+*.DS_Store
+*.dylib
+data
