@@ -1,0 +1,40 @@
+This is a matlab demo code for the algorithm described in the following paper:
+
+Convolutional deep belief networks for scalable unsupervised learning of hierarchical representations.
+Honglak Lee, Roger Grosse, Rajesh Ranganath, and Andrew Y. Ng.
+In Proceedings of the 26th International Conference on Machine Learning (ICML), 2009. 
+
+
+Copyright by Honglak Lee
+
+
+
+Quick instruction: 
+In matlab, run the following demo code
+
+demo_train
+
+
+
+If you use this code, please cite the following papers:
+
+@article{lee2011unsupervised,
+	title={Unsupervised learning of hierarchical representations with convolutional deep belief networks},
+	author={Honglak Lee and Roger Grosse and Rajesh Ranganath and A.~Y. Ng},
+	journal={Communications of the ACM},
+	volume={54},
+	number={10},
+	pages={95--103},
+	year={2011},
+	publisher={ACM}
+}
+
+@inproceedings{Lee+etal09:convDBN,
+	title = {Convolutional Deep Belief Networks for Scalable Unsupervised Learning of Hierarchical Representations},
+	author = {Lee, Honglak and Grosse, Roger and Ranganath, Rajesh and Ng, Andrew Y.},
+	booktitle = {Proceedings of the 26th International Conference on Machine Learning},
+	year = {2009},
+	pages = {609--616},
+}
+
+
