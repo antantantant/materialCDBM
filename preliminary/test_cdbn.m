@@ -1,0 +1,65 @@
+clear
+close all
+addpath('../structure/');
+addpath('../crbm_demo/');
+
+% use the alloy data from Yang Jiao
+dataname = 'alloy';
+
+%% First layer
+% parameters for first layer RBM
+ws = 10; % filter size
+num_bases = 24; % number of filters
+pbias = 0.002; % sparsity
+pbias_lb = 0.002; % sparsity lower bound
+pbias_lambda = 5; % ?
+spacing = 2; % pooling C?
+epsilon = 0.01;
+l2reg = 0.01;
+batch_size = 2;
+num_trial = 50;
+numchannels = 1; % input is grayscale
+sample_size = 10; % sample size for hidden layer for each visible layer input 
+layer = 1;
+
+% train first layer
+fname_prefix = sprintf('./results/crbm/crbm_updown_LB_new1h_%s_V1_w%d_b%02d_p%g_pl%g_plambda%g_sp%d_CD_eps%g_l2reg%g_bs%02d_layer%d', dataname, ws, num_bases, pbias, pbias_lb, pbias_lambda, spacing, epsilon, l2reg, batch_size, layer);
+fname_timestamp_save = sprintf('%s.mat', fname_prefix);
+if exist(fname_timestamp_save, 'file')
+    load(fname_timestamp_save);
+    hidsample1 = hidsample;
+    rbm1 = rbm;
+else
+    % if haven't trained
+    [hidsample1, rbm1] = train_crbm_updown_LB_v1(dataname, ws, num_bases, pbias, pbias_lb,...
+        pbias_lambda, spacing, epsilon, l2reg, batch_size,...
+        num_trial, numchannels, sample_size, layer);
+end
+
+% show sample hidden layer states
+disp_hidsample = hidsample1{1}+0;
+h=imagesc(sum(disp_hidsample,3),'EraseMode','none',[-1 1]);
+axis image off
+drawnow
+
+%% Second layer
+% parameters for second layer RBM
+ws = 20; % filter size
+numchannels = num_bases; % channel equals #basis from last layer
+num_bases = 12; % number of filters
+pbias = 0.005; % sparsity
+pbias_lb = 0.002; % sparsity lower bound
+pbias_lambda = 5; % ?
+spacing = 2; % pooling C?
+epsilon = 0.01;
+l2reg = 0.01;
+batch_size = 2;
+num_trial = 50;
+sample_size = 10; % sample size for hidden layer for each visible layer input 
+layer = 2;
+
+% train second layer
+[hidsample2, rbm2] = train_crbm_updown_LB_v1(dataname, ws, num_bases, pbias, pbias_lb,...
+    pbias_lambda, spacing, epsilon, l2reg, batch_size,...
+    num_trial, numchannels, sample_size, layer, hidsample1, rbm1);
+
