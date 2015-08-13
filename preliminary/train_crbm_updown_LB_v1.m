@@ -183,7 +183,7 @@ function [hidsample, rbm] = train_crbm_updown_LB_v1(dataname, ws, num_bases, pbi
     % sample the pooling layer
     hidsample = [];
     for imgid = 1:numel(images_all)
-        imdata = images_all{imgid};
+        imdata = images_all{imgid}+0; % convert to double if logical
         imdata = trim_image_for_spacing_fixconv(imdata, ws, spacing);
         for i = 1:sample_size
             % get hidden layer activation (expected values)

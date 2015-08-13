@@ -46,7 +46,7 @@ drawnow
 % parameters for second layer RBM
 ws = 20; % filter size
 numchannels = num_bases; % channel equals #basis from last layer
-num_bases = 12; % number of filters
+num_bases = 6; % number of filters
 pbias = 0.005; % sparsity
 pbias_lb = 0.002; % sparsity lower bound
 pbias_lambda = 5; % ?
@@ -55,7 +55,7 @@ epsilon = 0.01;
 l2reg = 0.01;
 batch_size = 2;
 num_trial = 50;
-sample_size = 10; % sample size for hidden layer for each visible layer input 
+sample_size = 1; % sample size for hidden layer for each visible layer input 
 layer = 2;
 
 % train second layer
