@@ -20,6 +20,7 @@ for id = 0:99
     fclose(fid);
     mat = reshape(mat,200,200);
     mat = mat/2; % convert to grayscale
-    output = ['../structure/',num2str(id),'.tif'];
+    mat = imresize(mat,0.5);
+    output = ['../structure/',num2str(id),'_scale05.tif'];
     imwrite(mat,output);
 end
