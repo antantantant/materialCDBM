@@ -1,0 +1,7 @@
+*.mat
+/ruijin/*.pptx
+/ruijin/*.zip
+*.tif
+*.vtk
+*.tar
+*.gz
