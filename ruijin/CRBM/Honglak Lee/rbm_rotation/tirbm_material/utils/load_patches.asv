@@ -14,7 +14,7 @@ f1=load([CIFAR_DIR '/n_BW.mat']);
 % f4=load([CIFAR_DIR '/data_batch_4.mat']);
 % f5=load([CIFAR_DIR '/data_batch_5.mat']);
 
-xtr = double([f1.n;]);
+xtr = double([f1.n_BW;]);
 % ytr = double([f1.labels;]) + 1; % add 1 to labels!
 clear f1;
 fname = sprintf('alloy_ws_%d',ws);
