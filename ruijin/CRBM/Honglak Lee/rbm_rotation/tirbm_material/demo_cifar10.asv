@@ -7,7 +7,7 @@ startup;
 dataset = 'alloy';
 intype = 'real';
 sptype = 'exact';
-epsilon = 0.001; % change 0.005 to 0.001
+epsilon = 0.001; % 
 batchSize = 200;
 if ~exist('split', 'var'),
     split = 'split'; end

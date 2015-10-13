@@ -49,7 +49,7 @@ pos = replicate_struct(weight, 0);
 neg = replicate_struct(weight, 0);
 
 % momentum
-initialmomentum  = 0.5;
+initialmomentum  = 0.1; % change from 0.5 to 0.1
 finalmomentum    = 0.9;
 
 % convert Tlist (cell) into matrix
