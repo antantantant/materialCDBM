@@ -8,16 +8,16 @@ prepare_cifar10;
 
 % Load CIFAR training data
 fprintf('Loading training data...\n');
-f1=load([CIFAR_DIR '/n_BW.mat']);
+f1=load([CIFAR_DIR '/n_test3.mat']);
 % f2=load([CIFAR_DIR '/data_batch_2.mat']);
 % f3=load([CIFAR_DIR '/data_batch_3.mat']);
 % f4=load([CIFAR_DIR '/data_batch_4.mat']);
 % f5=load([CIFAR_DIR '/data_batch_5.mat']);
 
-xtr = double([f1.n_BW;]);
+xtr = double([f1.n_test3;]);
 % ytr = double([f1.labels;]) + 1; % add 1 to labels!
 clear f1;
-fname = sprintf('alloy_ws_%d',ws);
+fname = sprintf('TEST7_grayscale_usingBWpatch_alloy_ws_%d',ws);
 
 if ~exist('patch','dir'),
     mkdir('patch');

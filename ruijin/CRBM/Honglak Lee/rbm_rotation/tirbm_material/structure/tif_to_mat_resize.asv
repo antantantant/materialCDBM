@@ -3,7 +3,7 @@ clear
 for k = 1:99
     a = imread(sprintf('%d.tif',k));
 %     b = imresize(a,36/100);
-    b = im2bw(a,0.9); % for binary
+%     b = im2bw(a,0.9); % for binary
     b = reshape(a,[1,size(a,1)*size(a,2)]);
     h{k}=b;
 end

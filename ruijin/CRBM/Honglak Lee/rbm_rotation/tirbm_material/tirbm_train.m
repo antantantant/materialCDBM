@@ -34,10 +34,10 @@ end
 % filename to save
 if ~isfield(params, 'fname'),
     if strcmp(params.txtype,'rot'),
-        fname = sprintf('trbm_%s_w%d_b%02d_%s_nrot%d_pb%g_pl%g', ...
+        fname = sprintf('trbm_TEST7_grayscale_%s_w%d_b%02d_%s_nrot%d_pb%g_pl%g', ...
             params.dataset, params.ws, params.numhid, params.txtype, params.numtx, params.pbias, params.plambda);
     elseif strcmp(params.txtype,'trans') || strcmp(params.txtype,'scale'),
-        fname = sprintf('trbm_%s_w%d_b%02d_%s_ntx%d_gr%d_pb%g_pl%g', ...
+        fname = sprintf('trbm_TEST7_grayscale_%s_w%d_b%02d_%s_ntx%d_gr%d_pb%g_pl%g', ...
             params.dataset, params.ws, params.numhid, params.txtype, params.numtx, params.grid, params.pbias, params.plambda);
     end
     params.fname  = sprintf('%s/%s', params.savepath, fname);
@@ -228,8 +228,10 @@ for t = 1:params.maxiter,
             fprintf('epoch:%d, iteration %d/%d, err= %g, sparsity= %g mean(hbias)= %g,  mean(vbias)= %g\n', ...
                 t, i, nbatch, mean_err, mean_sparsity, gather(mean(weight.hidbias(:))), gather(mean(weight.visbias(:))));
         end
+        
     end
-    
+        
+   
     % update sigma using reconstruction error
     history.error(t) = gather(mean(rec_err_epoch));
     history.sparsity(t) = gather(mean(sparsity_epoch));
@@ -242,7 +244,7 @@ for t = 1:params.maxiter,
     end
     fprintf('epoch %d error = %g \tsparsity_hid = %g\n', t, mean(rec_err_epoch), mean(sparsity_epoch));
     
-    if mod(t, 20) == 0,
+    if mod(t, 10) == 0,
         % save trained weight
         weight = cpu2gpu_struct(weight);
         history = cpu2gpu_struct(history);
@@ -253,6 +255,17 @@ for t = 1:params.maxiter,
             weight = gpu2cpu_struct(weight);
             history = cpu2gpu_struct(history);
         end
+    end
+    
+    if mod(t,10)==0
+        addpath('C:\doiUsers\Ruijin\materialCDBM\ruijin\CRBM\Honglak Lee\rbm_rotation\tirbm_material\results')
+%         fname_figure = sprintf('trbm_TEST_grayscale_%s_w%d_b%02d_%s_nrot%d_pb%g_pl%g_iter_%s', ...
+%             params.dataset, params.ws, params.numhid, params.txtype, params.numtx, params.pbias, params.plambda,t);
+        
+        load(sprintf('%s_iter_%d.mat',params.fname,t));
+        temp = gpu2cpu_struct(weight);
+        temp = temp.vishid;
+        figure(t);display_network(temp)
     end
 end
 

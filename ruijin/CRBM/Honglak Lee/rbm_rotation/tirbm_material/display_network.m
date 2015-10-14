@@ -15,7 +15,9 @@ if ~exist('opt_colmajor', 'var') || isempty(opt_colmajor)
 end
 
 
-if opt_graycolor, colormap(gray); end
+if opt_graycolor, 
+    colormap(gray); 
+end
 
 % compute rows, cols
 [L M]=size(A);
@@ -78,7 +80,9 @@ end
 
 if opt_graycolor
     h=imagesc(array,'EraseMode','none',[-1 1]);
+%     h=imshow(array,[-1 1]);
 else
+%     h=imshow(array,[-1 1]);
     h=imagesc(array,'EraseMode','none',[-1 1]);
 end
 axis image off
